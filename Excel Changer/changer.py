@@ -1,5 +1,6 @@
 import xlrd
 import csv
+from datetime import date
 
 #le saca los '' demas a los row en el xls
 def cleanCell(ahh):
@@ -35,7 +36,7 @@ def adapt(path):
     hs = hsV.value
 
     cuentaV = sheet.cell(2,4)
-    cuenta =cuentaV.value
+    cuenta = cuentaV.value
 
     denominacionV = sheet.cell(3,4)
     denominacion = denominacionV.value
@@ -53,7 +54,15 @@ def adapt(path):
     #consigue el largo del xls file
     fin = sheet.nrows -1
 
-    with open('movimientos-cuenta-0410140929-2606202010307.csv', 'w') as csvfile:
+    today = date.today()
+
+    # d1 = today.strftime("%d/%m/%Y")
+
+    d2 = today.strftime("%B %d, %Y")
+
+    time = d2 + '.csv'
+
+    with open(time, 'w') as csvfile:
         filewriter = csv.writer(csvfile, delimiter=',',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         filewriter.writerow(['', titulo])
@@ -64,7 +73,7 @@ def adapt(path):
         #limpia el xls y escribe la parte importante del xls
         for x in range(5, fin):
             ahh = sheet.row_values(x)
-            filewriter.writerow(cleanCell(ahh))
+            filewriter.writerow(['',cleanCell(ahh)])
 
 
 
