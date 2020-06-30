@@ -1,5 +1,4 @@
-import time
-import os
+import time, os, mover
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -58,10 +57,11 @@ def bot(useri, pwordi, ruci):
 
 
 if __name__ == "__main__":
-    ruc = input("Ingresar RUC: \n")
-    user = input("Ingresar Cedula: \n")
-    pword = input("Ingresar password: \n")
+    # ruc = input("Ingresar RUC: \n")
+    # user = input("Ingresar Cedula: \n")
+    # pword = input("Ingresar password: \n")
+
 
     bot(user, pword, ruc)
 
-    os.system('python mover.py')
+    mover.move()
