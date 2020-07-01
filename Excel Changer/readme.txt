@@ -17,8 +17,8 @@ Using Python, shutil, os and glob
 Moves files from downloads to desired folder
 Mueve programas deseados de una carpeta a otra
 ///////////////////////
-upload
-Using python, psycopg2 for Python
+compare
+Using Python csv and xlrd
 
-Uploads CSV files to PostgreSQL server
-Suber archivo CSV a servidor PostgreSQL
+Opens an xls and csv and looks for missing rows in either based on a designated column
+Abre un xls y csv y se fija en hileras que falten basado en una columna designada
