@@ -22,3 +22,11 @@ Using Python csv and xlrd
 
 Opens an xls and csv and looks for missing rows in either based on a designated column
 Abre un xls y csv y se fija en hileras que falten basado en una columna designada
+
+
+
+###########################################################
+How to run
+Como usar
+
+Run downloadbot.py on the cmd line and the rest should be done by itself
