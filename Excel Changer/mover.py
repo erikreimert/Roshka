@@ -15,7 +15,7 @@ def move():
     num = str(num) + '.xls'
     name = source_dir + '/' + num
 
-    #mueve y renombra el archivo
+    #mueve y renombra el archivo a data y brosco original respectivamente
     for file in files:
         os.rename(file, name)
         if os.path.isfile(name):
@@ -25,6 +25,32 @@ def move():
         if os.path.isfile(name):
             shutil.move(name, dst2)
     return 'data/' + num
+
+#renombrar archivos bancop para que tengan el mismo nombre que los archivos en data y lo mismo para archivos Brosco
+def move2(f):
+    src = 'C:/Users/erikr/github/Roshka/Excel Changer/data/'
+    dst = 'C:/Users/erikr/github/Roshka/Excel Changer/Bancop Original/'
+
+    files = glob.iglob(os.path.join(src, "?.xls"))
+    n = f.split('.')
+    name = n[0] + '.xls'
+
+    for file in files:
+        os.rename(file, name)
+        if os.path.isfile(name):
+            shutil.move(name, dst)
+    src2 = 'C:/Users/erikr/github/Roshka/Excel Changer/BrosCo Original/'
+    brosco = glob.iglob(os.path.join(src2, "?.xls"))
+    name2 = name.split('/')
+    name2 = name2[1]
+    for file in brosco:
+        os.rename(file, name2)
+        if os.path.isfile(name2):
+            shutil.move(name2, src2)
+    fin1 = name2.replace('xls','csv')
+    fin2 = name2
+
+    return fin1,fin2
 
 if __name__ == "__main__":
 
