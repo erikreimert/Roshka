@@ -28,7 +28,7 @@ def bot(user, pword, ruc):
     nextButton.click()
 
 #TIEMPO DE ESPERA PARA CONFIRMACION DE TELEFONO, INCREMENTAR SI FALTA MAS
-    time.sleep(30)
+    time.sleep(40)
 
 ############################################################################
 ####Esperar a que la pagina cargue y despues entrar a pagina para descarga
@@ -38,7 +38,9 @@ def bot(user, pword, ruc):
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.LINK_TEXT,'Movimientos')))
     Esperar.click()
 
-    descargar = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH,"//input[@value='0410140929']")))
+    #TODO
+    time.sleep(3)
+    descargar = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH,"//input[@id='0410140929mc']")))
     descargar.click()
 
     descargar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'dataMovementAccountSelected')))
@@ -46,27 +48,27 @@ def bot(user, pword, ruc):
 
     descargar = WebDriverWait(browser, 80).until(EC.element_to_be_clickable((By.XPATH,"//i[@class='icon-download']")))
     descargar.click()
+    exit(0)
 ############################################################################
-
-#descargar archivo de broscop
+#descargar archivo de brosco
 def bot2():
-
+    link = 'https://phoebe.roshka.com.py/brosco-api/aurora-api/conciliation/list/export?from=' + fromd + '&to=' + to + '&affiliateId=EDUC'
+    link1 = 'https://phoebe.roshka.com.py/brosco-api/aurora-api/conciliation/list/export?from=2020-06-25&to=2020-06-30&affiliateId=EDUC'
     browser = webdriver.Chrome()
-    browser.get((''))
+    browser.get((link1))
 
     #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
     time.sleep(50)
 
 
 if __name__ == "__main__":
-    ruc = input("Ingresar RUC: \n")
-    user = input("Ingresar Cedula: \n")
-    pword = input("Ingresar password: \n")
-    # ruc =
-    # user =
-    # pword =
+    # ruc = input("Ingresar RUC: \n")
+    # user = input("Ingresar Cedula: \n")
+    # pword = input("Ingresar password: \n")
 
+    fromd = input("Ingresar fecha inicio en formato YY-MM-DD (con las rayas)")
+    to = input("Ingresar fecha final en formato YY-MM-DD (con las rayas)")
 
-    bot(user, pword, ruc)
+    # bot(user, pword, ruc)
     bot2()
-    os.system('python my_file.py')
+    os.system('python mover.py')
