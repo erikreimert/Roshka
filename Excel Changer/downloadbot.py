@@ -40,7 +40,7 @@ def bot(user, pword, ruc):
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.LINK_TEXT,'Movimientos')))
     Esperar.click()
 
-    #TODO Este es el que falla 
+    #TODO Este es el que falla
     time.sleep(3)
     descargar = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH,"//input[@id='0410140929mc']")))
     descargar.click()
@@ -75,9 +75,7 @@ if __name__ == "__main__":
 
     ################
     #      BORRAR AL TERMINAR DE HACER TESTING, ESCENCIAL
-    user = '2124028'
-    pword = 'Verti2011'
-    ruc = '80101558-8'
+
     ################
 
     bot(user, pword, ruc)
