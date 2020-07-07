@@ -7,7 +7,7 @@ def compare(name, name2):
     ### BrosCo info and open
     book = xlrd.open_workbook(src2)
     sheet = book.sheet_by_index(0)
-    fin = sheet.nrows -1
+    fin = sheet.nrows
     brosco = []
     bancop = []
     # missing = []

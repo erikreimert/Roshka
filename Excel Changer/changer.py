@@ -46,7 +46,7 @@ def adapt(path):
     sheet = book.sheet_by_index(0)
 
     #consigue el largo del xls file
-    fin = sheet.nrows -1
+    fin = sheet.nrows
 
     today = date.today()
 

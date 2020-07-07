@@ -30,3 +30,6 @@ How to run
 Como usar
 
 Run downloadbot.py on the cmd line and the rest should be done by itself
+Dale run a downloadbot.py en el cmd y el resto funciona por si mismo
+
+MANTENER CARPETA DE DESCARGA LO MAS LIMPIA POSIBLE, TRATAR DE NO TENER ARCHIVOS DE EXCEL CON LA PALABRA 'BROSCO' O 'MOVIMIENTO' EN ESA CARPETA

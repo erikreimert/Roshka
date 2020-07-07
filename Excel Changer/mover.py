@@ -17,13 +17,15 @@ def move():
 
     #mueve y renombra el archivo a data y brosco original respectivamente
     for file in files:
-        os.rename(file, name)
-        if os.path.isfile(name):
-            shutil.move(name, dst)
+        if 'movimientos' in file:
+            os.rename(file, name)
+            if os.path.isfile(name):
+                shutil.move(name, dst)
     for file in brosco:
-        os.rename(file, name)
-        if os.path.isfile(name):
-            shutil.move(name, dst2)
+        if 'BrosCo' in file:
+            os.rename(file, name)
+            if os.path.isfile(name):
+                shutil.move(name, dst2)
     return 'data/' + num
 
 #renombrar archivos bancop para que tengan el mismo nombre que los archivos en data y lo mismo para archivos Brosco
