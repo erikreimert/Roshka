@@ -1,0 +1,15 @@
+* {
+  text-align: center;
+}
+div.title {
+  margin: inherit;
+  background-color: PowderBlue;
+  border-color: Azure;
+  font-family: Georgia,
+}
+div.body{
+  background-color: Moccasin;
+  margin: inherit;
+  font-family: Georgia;
+
+}

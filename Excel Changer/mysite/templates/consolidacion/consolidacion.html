@@ -2,15 +2,23 @@
   <head>
     <title>BrosCo Consolidaciones</title>
 
-    <!-- <script src="../configs.js"></script> -->
+    <!-- first load django static tag. -->
+   {% load static %}
+
+   <!-- use django static tag ton load js file and css file. -->
+   <script src="{% static 'js/configs.js' %}"></script>
+   <link rel="stylesheet" href="{% static 'css/consolidacion.css' %}">
   </head>
   <body>
+    <div class = 'title'>
     <h1> Consolidaciones BrosCo </h1>
+    </div>
+    <div class = 'body'>
     <h2>Porfavor llenar datos</h2>
-    <form method="POST" class="psot-form" name ='data' onsubmit="return validate()"style="text-align:left" enctype="multipart/form-data">
+    <form method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">
       <p>Datos cuenta Bancop</p>
-        <input type='file' name='bancop' accept="application/vnd.ms-excel">
-        <button type="submit" class="save btn btn-default">Submit</button>
+        <input type='file' name='bancop' accept="application/vnd.ms-excel"><br><br>
+        <button type="submit" class="save btn btn-default">Submit</button><br>
 
         <br><input type="text" id='ruc' name= 'ruc' required placeholder="RUC:"><br>
         <br><input type="text" id='user' name= 'user' required placeholder="Cedula:"><br>
@@ -21,6 +29,7 @@
         <input type="text" id='ini' name= 'ini' required placeholder="Fecha inicio: 2020-06-30"><br>
         <br><input type="text" id='fin' name= 'fin' required placeholder="Fecha fin: 2020-06-30"> <br>
         <br><input type="submit" value="Submit">
+      </div>
     </form>
 
   </body>
