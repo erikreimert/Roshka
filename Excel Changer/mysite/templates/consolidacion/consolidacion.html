@@ -1,17 +1,14 @@
-{% load static %}<!doctype html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8" />
-    <title>{% block title %}BrosCo Consolidaciones {}% endblock %}</title>
+    <title>BrosCo Consolidaciones</title>
 
-  {% block content %}
-  <script src="../HTML/configs.js"></script>
+    <!-- <script src="../configs.js"></script> -->
+  </head>
   <body>
     <h1> Consolidaciones BrosCo </h1>
     <h2>Porfavor llenar datos</h2>
-    <form method="POST" class="psot-form"name ='data' onsubmit="return validate()"style="text-align:left" enctype="multipart/form-data">
+    <form method="POST" class="psot-form" name ='data' onsubmit="return validate()"style="text-align:left" enctype="multipart/form-data">
       <p>Datos cuenta Bancop</p>
-        {% csrf_token %}
         <input type='file' name='bancop' accept="application/vnd.ms-excel">
         <button type="submit" class="save btn btn-default">Submit</button>
 
@@ -27,4 +24,4 @@
     </form>
 
   </body>
-  {% endblock %}
+</html>
