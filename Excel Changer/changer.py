@@ -39,7 +39,7 @@ def cleanCell(ahh, y):
 
     return ahh
 
-def adapt(path):
+def adapt(path, fechaini, fechafin):
 
     #abre el archivo con xlrd
     book = xlrd.open_workbook(path)
@@ -76,9 +76,6 @@ def adapt(path):
 
     #ver que hace en mover.py
     fin = mover.move2(f)
+    name3 = fechaini + fechafin
     #ver que hace en compare.py
-    compare.compare(fin[0],fin[1])
-
-if __name__ == "__main__":
-     path = input()
-     adapt(path)
+    compare.compare(fin[0],fin[1], name3)

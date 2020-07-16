@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 ##############################################################################
                 #Atento de descargar el archivo de bancop, no funciono pero si alguien lo logra buenisimo
 #descargar archivo de Bancop
-def bot(user, pword, ruc):
+def bot(user, pword, ruc, option):
 
     #init el driver y chrome
     browser = webdriver.Chrome()
@@ -28,9 +28,22 @@ def bot(user, pword, ruc):
     username.send_keys(pword)
     nextButton = browser.find_element_by_id('button-login')
     nextButton.click()
+    if option == 'email':
+        Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.CLASS_NAME,'text-option-send-email')))
+        Esperar.click()
+    else:
+        Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.XPATH,"//label[@for ='sms']")))
+        Esperar.click()
+    Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,"buttonCanalSend")))
+    Esperar.click()
+    twofa = input("Ingresar codigo 2fa\n")
+    username = browser.find_element_by_id('token')
+    username.send_keys(twofa)
+    Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.XPATH,"//div[@class = 'col-xs-12 col-sm-12 button-access style-button-access']/button[@class = 'button-white']")))
+    Esperar.click()
 
 #TIEMPO DE ESPERA PARA CONFIRMACION DE TELEFONO, INCREMENTAR SI FALTA MAS
-    time.sleep(40)
+
 
 ############################################################################
 ####Esperar a que la pagina cargue y despues entrar a pagina para descarga
@@ -41,15 +54,16 @@ def bot(user, pword, ruc):
     Esperar.click()
 
     #TODO Este es el que falla
-    time.sleep(3)
-    descargar = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH,"//input[@id='0410140929mc']")))
+    time.sleep(1)
+    descargar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.XPATH,"//form[@id='form-movement-account']/div[@class = 'radio col-md-12 col-sm-12 col-xs-12'/label[@for='041014092']")))
     descargar.click()
 
     descargar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'dataMovementAccountSelected')))
     descargar.click()
 
-    descargar = WebDriverWait(browser, 80).until(EC.element_to_be_clickable((By.XPATH,"//i[@class='icon-download']")))
+    descargar = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH,"//i[@class='icon-download']")))
     descargar.click()
+    time.sleep(60)
     exit(0)  ####Para testing hago que pare aca el programa
 ###########################################################################
 
@@ -62,8 +76,8 @@ def bot2(fromd, to):
     browser.get((link))
 
     #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
-    time.sleep(50)
-
+    time.sleep(60)
+    driver.quit()
 
 if __name__ == "__main__":
     # ruc = input("Ingresar RUC: \n")
@@ -75,9 +89,13 @@ if __name__ == "__main__":
 
     ################
     #      BORRAR AL TERMINAR DE HACER TESTING, ESCENCIAL
+    user = '2124028'
+    pword = 'Verti2011'
+    ruc = '80101558-8'
+    option = 'sms'
 
     ################
 
-    bot(user, pword, ruc)
-    bot2(fromd, to)
-    os.system('python mover.py')
+    bot(user, pword, ruc, option)
+    # bot2(fromd, to)
+    # mover.move(fromd, to)

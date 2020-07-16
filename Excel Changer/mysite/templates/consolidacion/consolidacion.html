@@ -13,22 +13,32 @@
     <div class = 'title'>
     <h1> Consolidaciones BrosCo </h1>
     </div>
-    <div class = 'body'>
-    <h2>Porfavor llenar datos</h2>
-    <form method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">
-      <p>Datos cuenta Bancop</p>
-        <input type='file' name='bancop' accept="application/vnd.ms-excel"><br><br>
-        <button type="submit" class="save btn btn-default">Submit</button><br>
+    <div id= 'wrapper'>
+    <h2 id="#title-summary">Porfavor llenar datos</h2>
 
+    <div class="form">
+     <form method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+      <p class ='bancop'>Datos cuenta Bancop</p>
+      <!--Parte de ingreso de data bancop-->
         <br><input type="text" id='ruc' name= 'ruc' required placeholder="RUC:"><br>
         <br><input type="text" id='user' name= 'user' required placeholder="Cedula:"><br>
         <br><input type="password" id='pword' name= 'pword' required placeholder="Password:"><br>
-        <br><input type="checkbox" onclick="pwshow()">Mostrar Password
+        <input type="checkbox" onclick="pwshow()">Mostrar Password<br>
+        <div id='twofa'>
+        <p>Prefiere autenticar con email o sms?</p>
+        <input type="radio" id="email" name="2fa" value="email" required>
+        <label for="email">Email</label>
+        <input type="radio" id="sms" name="2fa" value="sms" required>
+        <label for="sms">Sms</label>
+        </div>
 
-        <br><br><p>Llenar fecha en formato 'año-mes-dia'. Ej. 2020-06-30</p>
+        <!-- parte de ingreso de data brosco-->
+        <br><br><p class = 'broscop'>Datos BrosCo</p>
+        <p>Llenar fecha en formato 'año-mes-dia'   . Ej. 2020-06-30</p>
         <input type="text" id='ini' name= 'ini' required placeholder="Fecha inicio: 2020-06-30"><br>
         <br><input type="text" id='fin' name= 'fin' required placeholder="Fecha fin: 2020-06-30"> <br>
         <br><input type="submit" value="Submit">
+      </div>
       </div>
     </form>
 

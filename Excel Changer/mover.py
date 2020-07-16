@@ -1,6 +1,6 @@
 import glob, os, shutil, changer
 
-def move():
+def move(fromd, to):
     source_dir = 'C:/Users/erikr/Downloads'
     dst = 'C:/Users/erikr/github/Roshka/Excel Changer/data/'
     dst2 = 'C:/Users/erikr/github/Roshka/Excel Changer/BrosCo Original/'
@@ -26,7 +26,8 @@ def move():
             os.rename(file, name)
             if os.path.isfile(name):
                 shutil.move(name, dst2)
-    return 'data/' + num
+    path = 'data/' + num
+    changer.adapt(path, fromd, to)
 
 #renombrar archivos bancop para que tengan el mismo nombre que los archivos en data y lo mismo para archivos Brosco
 def move2(f):
@@ -53,8 +54,3 @@ def move2(f):
     fin2 = name2
 
     return fin1,fin2
-
-if __name__ == "__main__":
-
-    path = move()
-    changer.adapt(path)
