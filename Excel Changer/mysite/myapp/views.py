@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import os
 
 # Create your views here.
 def upload(request):
@@ -6,7 +7,11 @@ def upload(request):
         ruc = request.POST.get('ruc')
         cedula = request.POST.get('user')
         pword = request.POST.get('pword')
-        twofa = request.POST.get('2fa')
+        pword = str(pword)
+        twofaoption = request.POST.get('2fa')
         fechain = request.POST.get('ini')
         fechafin = request.POST.get('fin')
+        twofa = request.POST.get('twofa')
+        print(ruc)
+        print(twofa)
     return render(request, 'consolidacion/consolidacion.html')

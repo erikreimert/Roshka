@@ -1,35 +1,35 @@
 <html lang="en" dir="ltr">
-  <head>
-    <title>BrosCo Consolidaciones</title>
+<head>
+  <title>BrosCo Consolidaciones</title>
 
-    <!-- first load django static tag. -->
-   {% load static %}
+  <!-- first load django static tag. -->
+  {% load static %}
 
-   <!-- use django static tag ton load js file and css file. -->
-   <script src="{% static 'js/configs.js' %}"></script>
-   <link rel="stylesheet" href="{% static 'css/consolidacion.css' %}">
-  </head>
-  <body>
-    <div class = 'title'>
+  <!-- use django static tag ton load js file and css file. -->
+  <script src="{% static 'js/configs.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/consolidacion.css' %}">
+</head>
+<body>
+  <div class = 'title'>
     <h1> Consolidaciones BrosCo </h1>
-    </div>
-    <div id= 'wrapper'>
+  </div>
+  <div id= 'wrapper'>
     <h2 id="#title-summary">Porfavor llenar datos</h2>
 
     <div class="form">
-     <form method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
-      <p class ='bancop'>Datos cuenta Bancop</p>
-      <!--Parte de ingreso de data bancop-->
+      <form method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+        <p class ='bancop'>Datos cuenta Bancop</p>
+        <!--Parte de ingreso de data bancop-->
         <br><input type="text" id='ruc' name= 'ruc' required placeholder="RUC:"><br>
         <br><input type="text" id='user' name= 'user' required placeholder="Cedula:"><br>
         <br><input type="password" id='pword' name= 'pword' required placeholder="Password:"><br>
         <input type="checkbox" onclick="pwshow()">Mostrar Password<br>
-        <div id='twofa'>
-        <p>Prefiere autenticar con email o sms?</p>
-        <input type="radio" id="email" name="2fa" value="email" required>
-        <label for="email">Email</label>
-        <input type="radio" id="sms" name="2fa" value="sms" required>
-        <label for="sms">Sms</label>
+        <div id='twofaoption'>
+          <p>Prefiere autenticar con email o sms?</p>
+          <input type="radio" id="email" name="2fa" value="email" required>
+          <label for="email">Email</label>
+          <input type="radio" id="sms" name="2fa" value="sms" required>
+          <label for="sms">Sms</label>
         </div>
 
         <!-- parte de ingreso de data brosco-->
@@ -37,10 +37,17 @@
         <p>Llenar fecha en formato 'año-mes-dia'   . Ej. 2020-06-30</p>
         <input type="text" id='ini' name= 'ini' required placeholder="Fecha inicio: 2020-06-30"><br>
         <br><input type="text" id='fin' name= 'fin' required placeholder="Fecha fin: 2020-06-30"> <br>
+        <br><input type="submit" value="Submit"><br>
+      </form>
+      
+      <form method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+        <br><label for='twofa'>Escribir codigo de autenticacion cuando lo reciba</label>
+        <br><input type='text' id='twofa' name= 'twofa' placeholder='Codigo de autenticacion:'><br>
         <br><input type="submit" value="Submit">
-      </div>
-      </div>
-    </form>
+      </form>
 
-  </body>
+    </div>
+  </div>
+
+</body>
 </html>

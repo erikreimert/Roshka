@@ -28,6 +28,7 @@ def bot(user, pword, ruc, option):
     username.send_keys(pword)
     nextButton = browser.find_element_by_id('button-login')
     nextButton.click()
+    exit(0)
     if option == 'email':
         Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.CLASS_NAME,'text-option-send-email')))
         Esperar.click()
@@ -36,14 +37,14 @@ def bot(user, pword, ruc, option):
         Esperar.click()
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,"buttonCanalSend")))
     Esperar.click()
+
+    #input para el 2fa
     twofa = input("Ingresar codigo 2fa\n")
+
     username = browser.find_element_by_id('token')
     username.send_keys(twofa)
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.XPATH,"//div[@class = 'col-xs-12 col-sm-12 button-access style-button-access']/button[@class = 'button-white']")))
     Esperar.click()
-
-#TIEMPO DE ESPERA PARA CONFIRMACION DE TELEFONO, INCREMENTAR SI FALTA MAS
-
 
 ############################################################################
 ####Esperar a que la pagina cargue y despues entrar a pagina para descarga
@@ -70,7 +71,7 @@ def bot(user, pword, ruc, option):
 
 #descargar archivo de brosco
 def bot2(fromd, to):
-    link = 'https://phoebe.roshka.com.py/brosco-api/aurora-api/conciliation/list/export?from=' + fromd + '&to=' + to + '&affiliateId=EDUC'
+    link = 'https://iapi.brosco.com.py/brosco-api/aurora/conciliation/list/export?from=' + fromd + '&to=' + to + '&affiliateId=EDUC'
     # link1 = 'https://phoebe.roshka.com.py/brosco-api/aurora-api/conciliation/list/export?from=2020-06-25&to=2020-06-30&affiliateId=EDUC'
     browser = webdriver.Chrome()
     browser.get((link))
@@ -80,9 +81,10 @@ def bot2(fromd, to):
     driver.quit()
 
 if __name__ == "__main__":
-    # ruc = input("Ingresar RUC: \n")
-    # user = input("Ingresar Cedula: \n")
-    # pword = input("Ingresar password: \n")
+    ruc = input("Ingresar RUC: \n")
+    user = input("Ingresar Cedula: \n")
+    pword = input("Ingresar password: \n")
+    option = input("Ingresr opcion 2fa: \n")
 
     fromd = input("Ingresar fecha inicio en formato YY-MM-DD (con las rayas)")
     to = input("Ingresar fecha final en formato YY-MM-DD (con las rayas)")
