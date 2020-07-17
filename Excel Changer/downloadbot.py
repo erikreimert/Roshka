@@ -1,4 +1,4 @@
-import time, os, mover
+import time, os, mover, sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -13,6 +13,8 @@ def bot(user, pword, ruc, option):
     browser = webdriver.Chrome()
     browser.get(('https://www.bancop.com.py:8443/bancop/login'))
 
+    # twofa = input("Ingresar codigo 2fa\n")
+    # print(twofa)
 
     #cambia a pagina de Enterprise
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'title-second-login')))
@@ -28,18 +30,18 @@ def bot(user, pword, ruc, option):
     username.send_keys(pword)
     nextButton = browser.find_element_by_id('button-login')
     nextButton.click()
-    exit(0)
     if option == 'email':
         Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.CLASS_NAME,'text-option-send-email')))
         Esperar.click()
     else:
         Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.XPATH,"//label[@for ='sms']")))
         Esperar.click()
+
+    twofa = input("Ingresar codigo 2fa\n")
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,"buttonCanalSend")))
     Esperar.click()
 
     #input para el 2fa
-    twofa = input("Ingresar codigo 2fa\n")
 
     username = browser.find_element_by_id('token')
     username.send_keys(twofa)
@@ -81,23 +83,36 @@ def bot2(fromd, to):
     driver.quit()
 
 if __name__ == "__main__":
-    ruc = input("Ingresar RUC: \n")
-    user = input("Ingresar Cedula: \n")
-    pword = input("Ingresar password: \n")
-    option = input("Ingresr opcion 2fa: \n")
-
-    fromd = input("Ingresar fecha inicio en formato YY-MM-DD (con las rayas)")
-    to = input("Ingresar fecha final en formato YY-MM-DD (con las rayas)")
-
-    ################
+    # ruc = input("Ingresar RUC: \n")
+    # user = input("Ingresar Cedula: \n")
+    # pword = input("Ingresar password: \n")
+    # option = input("Ingresr opcion 2fa: \n")
+    #
+    # fromd = input("Ingresar fecha inicio en formato YY-MM-DD (con las rayas)")
+    # to = input("Ingresar fecha final en formato YY-MM-DD (con las rayas)")
+    # try:
+    #     ruc = sys.argv[1]
+    #     cedula = sys.argv[2]
+    #     pword = sys.argv[3]
+    #     option = sys.argv[4]
+    #     fromd = sys.argv[5]
+    #     to = sys.argv[6]
+    # except IndexError:
+    #     ruc = None
+    #     cedula = None
+    #     pword = None
+    #     option = None
+    #     fromd = None
+    #     to = None
+    # ################
     #      BORRAR AL TERMINAR DE HACER TESTING, ESCENCIAL
-    user = '2124028'
+    cedula = '2124028'
     pword = 'Verti2011'
     ruc = '80101558-8'
     option = 'sms'
 
     ################
 
-    bot(user, pword, ruc, option)
+    bot(cedula, pword, ruc, option)
     # bot2(fromd, to)
     # mover.move(fromd, to)
