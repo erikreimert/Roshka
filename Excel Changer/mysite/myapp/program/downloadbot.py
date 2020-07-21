@@ -14,16 +14,26 @@ def twofaPipe():
     return twofa
 def flagPipe():
     parent_conn,child_conn = Pipe()
-    p = Process(target=g, args=(child_conn,))
+    p = Process(target= g, args=(child_conn,))
     p.start()
     flag = parent_conn.recv()
     return flag
 ##############################################################################
 #descargar archivo de Bancop
-def bot(cedula, pword, ruc, option, fechain, fechafin):
+# def bot(Intermediary):
+def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
 
-    funca = input('a ver si funca')
-    print(funca)
+    # ################
+    #      BORRAR AL TERMINAR DE HACER TESTING, ESCENCIAL
+    cedula = '2124028'
+    pword = 'Verti2011'
+    ruc = '80101558-8'
+    option = 'sms'
+
+    ################
+
+    # funca = input('a ver si funca')
+    # print(funca)
 
 
     #init el driver y chrome
@@ -42,7 +52,7 @@ def bot(cedula, pword, ruc, option, fechain, fechafin):
     username = browser.find_element_by_id('numberRuc')
     username.send_keys(ruc)
     username = browser.find_element_by_id('userName')
-    username.send_keys(user)
+    username.send_keys(cedula)
     username = browser.find_element_by_id('password')
     username.send_keys(pword)
     nextButton = browser.find_element_by_id('button-login')
@@ -58,10 +68,10 @@ def bot(cedula, pword, ruc, option, fechain, fechafin):
     Esperar.click()
 
     #input para el 2fa
-    while (flagPipe()):
+    while (Intermediary.getflag()):
         pass
 
-    twofa = twofaPipe()
+    twofa = Intermediary.get2fa()
     print(twofa)
     exit(code=1)
 
@@ -105,21 +115,6 @@ def bot2(fromd, to):
     time.sleep(120)
     driver.quit()
 
-#class container para el 2fa
-class dosFa:
-    flag = False
-
-    def set2fa(self, twofa):
-        self.dosFa = twofa
-        self.flag = True
-
-    def get2fa(self):
-        return self.dosfa
-    def getflag(self):
-        return self.flag
-
-
-
 if __name__ == "__main__":
     try:
         ruc = sys.argv[1]
@@ -135,14 +130,6 @@ if __name__ == "__main__":
         option = None
         fromd = None
         to = None
-    # ################
-    #      BORRAR AL TERMINAR DE HACER TESTING, ESCENCIAL
-    cedula = '2124028'
-    pword = 'Verti2011'
-    ruc = '80101558-8'
-    option = 'sms'
-
-    ################
 
     bot(cedula, pword, ruc, option, fromd, to)
     # bot2(fromd, to)
