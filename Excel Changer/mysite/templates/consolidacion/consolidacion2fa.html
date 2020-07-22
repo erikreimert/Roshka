@@ -1,0 +1,30 @@
+<html lang="en" dir="ltr">
+<head>
+  <title>BrosCo Consolidaciones</title>
+
+  <!-- first load django static tag. -->
+  {% load static %}
+
+  <!-- use django static tag ton load js file and css file. -->
+  <script src="{% static 'js/configs.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/consolidacion.css' %}">
+</head>
+<body>
+  <div class = 'title'>
+    <h1> Consolidaciones BrosCo </h1>
+  </div>
+  <div id= 'wrapper'>
+    <h2 id="#title-summary">Porfavor llenar datos</h2>
+
+    <div class="form">
+      <form autocomplete = off method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+        <br><label for='twofa'>Escribir codigo de autenticacion cuando lo reciba</label>
+        <br><input type='text' autocomplete="off" id='twofa' name= 'twofa' placeholder='Codigo de autenticacion:'><br>
+        <br><input type="submit" value="Submit">
+      </form>
+
+    </div>
+  </div>
+
+</body>
+</html>

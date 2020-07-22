@@ -47,6 +47,8 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
 
     twofa = Intermediary.get2fa()
     print(twofa)
+    print('dbot')
+    driver.quit()
     exit(code=1)
 ###########################################################
 

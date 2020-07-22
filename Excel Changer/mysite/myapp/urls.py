@@ -18,7 +18,8 @@ from django.urls import path
 from myapp import views
 
 urlpatterns = [
-    path('consolidacion/', views.upload),
+    path('consolidacion/', views.consolidacion),
+    path('consolidacion2fa/', views.consolidacion2fa),
     path('test-session/', views.test_session),
     path('test-session-result/', views.test_session_result),
     path('admin/', admin.site.urls),
