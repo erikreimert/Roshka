@@ -1,18 +1,3 @@
-from multiprocessing import Process,Pipe
-
-
-#2fa pipe
-def f(child_conn):
-    msg = twofa
-    child_conn.send(msg)
-    child_conn.close()
-
-#flag Pipe
-def g(child_conn):
-    msg = flag
-    child_conn.send(msg)
-    child_conn.close()
-
 class twofaHold():
 
     def __init__(self):

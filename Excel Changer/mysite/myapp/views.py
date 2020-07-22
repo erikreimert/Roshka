@@ -21,27 +21,13 @@ def upload(request):
             twofa = request.POST.get('twofa')
             Intermediary = twofaHold()
 
-            #input para el downloadbot
-            # botArg = 'py downloadbot.py ' + ruc + ' ' + cedula + ' ' + pword + ' ' + option + ' ' + fechain + ' ' + fechafin
-            # print(bot)
-            # proc = subprocess.Popen(bot, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            # Thread(group=None, target=bot(), name=None, args=(Intermediary,), kwargs={}, daemon=None)
             t = Thread(group=None, target=bot, name=None, args=(cedula,pword,ruc,option, fechain, fechafin,Intermediary,), kwargs={}, daemon=None)
-            t.start()
 
-            # output = process.stdout
-            # print(output)
-            # os.system('ahh')
+            t.start()
 
             if twofa != None:
 
                 Intermediary.set2fa(twofa)
-
-                # putamadre = "b'" + twofa + "\n'"
-                # proc.communicate(putamadre)
-                # proc.stdin.write(putamadre)
-                # proc.stdin.flush()
-                # os.system('%s'%(twofa))
 
     return render(request, 'consolidacion/consolidacion.html')
 

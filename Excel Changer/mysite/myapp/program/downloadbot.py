@@ -6,18 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def twofaPipe():
-    parent_conn,child_conn = Pipe()
-    p = Process(target=f, args=(child_conn,))
-    p.start()
-    twofa = parent_conn.recv()
-    return twofa
-def flagPipe():
-    parent_conn,child_conn = Pipe()
-    p = Process(target= g, args=(child_conn,))
-    p.start()
-    flag = parent_conn.recv()
-    return flag
 ##############################################################################
 #descargar archivo de Bancop
 # def bot(Intermediary):
@@ -32,16 +20,9 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
 
     ################
 
-    # funca = input('a ver si funca')
-    # print(funca)
-
-
     #init el driver y chrome
     browser = webdriver.Chrome()
     browser.get(('https://www.bancop.com.py:8443/bancop/login'))
-
-    # twofa = input("Ingresar codigo 2fa\n")
-    # print(twofa)
 
     #cambia a pagina de Enterprise
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'title-second-login')))
@@ -57,6 +38,20 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
     username.send_keys(pword)
     nextButton = browser.find_element_by_id('button-login')
     nextButton.click()
+
+############################################################
+#TESTING
+    #input para el 2fa
+    while (Intermediary.getflag()):
+        pass
+
+    twofa = Intermediary.get2fa()
+    print(twofa)
+    exit(code=1)
+###########################################################
+
+
+
     if option == 'email':
         Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.CLASS_NAME,'text-option-send-email')))
         Esperar.click()
@@ -98,7 +93,7 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
 
     descargar = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH,"//i[@class='icon-download']")))
     descargar.click()
-    time.sleep(60)
+
     bot2(fechain, fechafin)
     mover.move(fechain, fechafin)
 ###########################################################################
