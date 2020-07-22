@@ -15,10 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp import views
+from myapp import urls as myapp_urls
 
 
-urlpatterns = [
-    path('consolidacion/', views.upload),
-    path('admin/', admin.site.urls),
-]
+urlpatterns = myapp_urls.urlpatterns
