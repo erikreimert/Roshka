@@ -17,7 +17,7 @@
     <h2 id="#title-summary">Porfavor llenar datos</h2>
 
     <div class="form">
-      <form autocomplete = off method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+      <form action = '/consolidacion2fa/'autocomplete = off method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
         <br><label for='twofa'>Escribir codigo de autenticacion cuando lo reciba</label>
         <br><input type='text' autocomplete="off" id='twofa' name= 'twofa' placeholder='Codigo de autenticacion:'><br>
         <br><input type="submit" value="Submit">

@@ -1,15 +1,12 @@
-import time, sys
-from multiprocessing import Process,Queue,Pipe
+import time, os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
 ##############################################################################
 #descargar archivo de Bancop
 # def bot(Intermediary):
-def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
+def bot(cedula, pword, ruc, option, fechain, fechafin):
 
     # ################
     #      BORRAR AL TERMINAR DE HACER TESTING, ESCENCIAL
@@ -23,7 +20,6 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
     #init el driver y chrome
     browser = webdriver.Chrome()
     browser.get(('https://www.bancop.com.py:8443/bancop/login'))
-
     #cambia a pagina de Enterprise
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'title-second-login')))
     Esperar.click()
@@ -39,21 +35,6 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
     nextButton = browser.find_element_by_id('button-login')
     nextButton.click()
 
-############################################################
-#TESTING
-    #input para el 2fa
-    while (Intermediary.getflag()):
-        pass
-
-    twofa = Intermediary.get2fa()
-    print(twofa)
-    print('dbot')
-    driver.quit()
-    exit(code=1)
-###########################################################
-
-
-
     if option == 'email':
         Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.CLASS_NAME,'text-option-send-email')))
         Esperar.click()
@@ -65,12 +46,12 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, Intermediary):
     Esperar.click()
 
     #input para el 2fa
-    while (Intermediary.getflag()):
+    while (False == os.path.isfile('./2fa.txt')):
         pass
-
-    twofa = Intermediary.get2fa()
-    print(twofa)
-    exit(code=1)
+    time.sleep(.01)
+    file = open('2fa.txt', 'r')
+    twofa = file.read()
+    file.close()
 
     username = browser.find_element_by_id('token')
     username.send_keys(twofa)
@@ -110,7 +91,7 @@ def bot2(fromd, to):
 
     #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
     time.sleep(120)
-    driver.quit()
+    browser.quit()
 
 if __name__ == "__main__":
     try:

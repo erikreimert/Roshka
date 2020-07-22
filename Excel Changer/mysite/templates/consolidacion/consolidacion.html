@@ -17,7 +17,7 @@
     <h2 id="#title-summary">Porfavor llenar datos</h2>
 
     <div class="form">
-      <form autocomplete= off method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+      <form action = '/consolidacion/' autocomplete= off method="POST" class="psot-form" name ='data' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
         <p class ='bancop'>Datos cuenta Bancop</p>
         <!--Parte de ingreso de data bancop-->
         <br><input type="text" id='ruc' name= 'ruc' required placeholder="RUC:"><br>

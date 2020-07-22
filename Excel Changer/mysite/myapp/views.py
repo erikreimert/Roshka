@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from myapp.program.downloadbot import bot
 from threading import Thread
-from myapp.twofaClass import twofaHold
 from datetime import datetime
-import jsonpickle
+import os, time
 
 # Create your views here.
 
@@ -27,15 +26,10 @@ def consolidacion_post(request):
     #para que abra el downloadbot
     if ruc != None:
         twofa = request.POST.get('twofa')
-        Intermediary = twofaHold()
 
-        t = Thread(group=None, target=bot, name=None, args=(cedula,pword,ruc,option, fechain, fechafin,Intermediary,), kwargs={}, daemon=None)
+        t = Thread(group=None, target=bot, name=None, args=(cedula,pword,ruc,option, fechain, fechafin,), kwargs={}, daemon=None)
 
         t.start()
-
-        #HAcer que sea Json Serializable
-        IntermediaryJson = jsonpickle.encode(Intermediary)
-        request.session['Intermediary'] = IntermediaryJson
 
         return consolidacion2fa(request)
 
@@ -44,9 +38,6 @@ def consolidacion_get(request):
 
 #Page para la parte 2fa de Consolidaciones
 def consolidacion2fa(request):
-    IntermediaryJson = request.session.get('Intermediary', None)
-    #Deshacer la seralizacion de jsonpickle
-    Intermediary = jsonpickle.decode(IntermediaryJson)
 
     if request.method == "POST":
         consolidacion2fa_post(request)
@@ -57,11 +48,16 @@ def consolidacion2fa(request):
     return render(request, 'consolidacion/consolidacion2fa.html')
 
 def consolidacion2fa_post(request):
+
     twofa = request.POST.get('twofa')
 
     if twofa != None:
-        Intermediary.set2fa(twofa)
-        return redirect('consolidacion.html')
+        auth_file = open('2fa.txt', 'w+')
+        auth_file.write(twofa)
+        auth_file.close()
+        time.sleep(10)
+        os.remove('2fa.txt')
+        return render(request, 'consolidacion/test-session.html')
 
 def consolidacion2fa_get(request):
     return render(request, 'consolidacion/consolidacion2fa.html')
