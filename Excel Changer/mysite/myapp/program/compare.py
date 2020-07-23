@@ -1,9 +1,9 @@
 import csv, xlrd
 
 def compare(name, name2, name3):
-    src = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/myapp/program/data/' + name
-    src2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/myapp/program/BrosCo Original/' + name2
-    want = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/myapp/program/BrosCo Si Bancop No/' + 'Consolidacion ' + name3
+    src = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/' + name
+    src2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/' + name2
+    want = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Si_Bancop_No/' + 'Consolidacion ' + name3
     ### BrosCo info and open
     book = xlrd.open_workbook(src2)
     sheet = book.sheet_by_index(0)

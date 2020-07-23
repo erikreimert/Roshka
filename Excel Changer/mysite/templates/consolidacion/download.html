@@ -18,32 +18,59 @@
     <h3 id='sub-heading'>Si el archivo deseado no aparece, espere un momento a que sea procesado</h3>
 
     <div class="form">
-      <!-- Boton para descargar archivos de BANCOP -->
-      <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='bancop' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
-        <?php
-        $dir = "C:/Users/Erik Reimert/github/Roshka/Excel Changer/mysite/myapp/program/Bancop Original/";
-         if (is_dir($dir)){
-           if ($dh = opendir($dir)){
-           while (($file = readdir($dh)) !== false){
-              $bancopArray[] = echo $file;
-            }
-            closedir($dh);
-          }}?>
-        <p id="bancop">Archivos de Bancop</p>
-        <select name="bancop" id ='bancop' value ='bancop'>
-          <?php foreach( $bancopArray as $var => $bancop ): ?>
-          <option value="<?php echo $var ?>"<?php if( $var == $result['bancop'] ): ?> selected="selected"<?php endif; ?>><?php echo $bancop ?></option>
-          <?php endforeach; ?>
-        </select>
-      </form>
 
-      <!-- Boton para descargar archivo Consolidado -->
-      <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='consolidado' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
-      </form>
+      <div class = 'bancop'>
+        <!-- Boton para descargar archivos de BANCOP -->
+        <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='bancop' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+          <p id="bancopLabel">Archivos de Bancop</p>
+          <select name="bancop" id ='bancop' value ='bancop'>
+            {% for x in items.bancopList %}
+            <option value='{{x}}'>{{x}}</option>
+            {% endfor %}
+          </select><br>
+          <br><input type="submit" value="Submit" onclick="dbancop()"><br>
+        </form>
+      </div>
 
-      <!-- Boton para descargar archivo BrosCo -->
-      <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='broscop' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
-      </form>
+      <div class = 'bancop'>
+        <!-- Boton para descargar archivo Consolidado -->
+        <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='broscop' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+        </form>
+        <p id="ConsolidadoLabel">Archivos Consolidados</p>
+        <select name="Consolidado" id ='Consolidado' value ='Consolidado'>
+          {% for x in items.consolidadoList %}
+          <option value='{{x}}'>{{x}}</option>
+          {% endfor %}
+        </select><br>
+        <br><input type="submit" value="Submit" onclick="dConsol()"><br>
+        </form>
+      </div>
+
+      <div class = 'bancop'>
+        <!-- Boton para descargar archivo BrosCo -->
+        <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='consolidado' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+          <p id="BrosCoLabel">Archivos de BrosCo</p>
+          <select name="BrosCo" id ='BrosCo' value ='BrosCo'>
+            {% for x in items.broscoList %}
+            <option value='{{x}}'>{{x}}</option>
+            {% endfor %}
+          </select><br>
+          <br><input type="submit" value="Submit" onclick="dBrosCo()"><br>
+        </form>
+      </div>
+
+      <div class = 'bancop'>
+        <!-- Boton para descargar archivo Bancop Original -->
+        <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='consolidado' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+          <p id="Bancop OriginalLabel">Archivos de Bancop Original</p>
+          <select name="Bancop_Original" id ='Bancop_Original' value ='Bancop_Original'>
+            {% for x in items.bancop_ogList %}
+            <option value='{{x}}'>{{x}}</option>
+            {% endfor %}
+          </select><br>
+          <br><input type="submit" value="Submit" onclick="dBog()"><br>
+        </form>
+      </div>
 
     </div>
   </div>

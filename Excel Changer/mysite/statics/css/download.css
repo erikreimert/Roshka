@@ -12,7 +12,7 @@ div.title{
   border-color: Azure;
   height: 10%;
   margin: 0;
-  padding: 0;
+  padding: 1px;
 }
 #wrapper{
   background-color: Moccasin;
@@ -31,18 +31,14 @@ h2 {
 div.form{
   display:inline-block;
   background-color: Moccasin;
-  width: 300px;
+  width: relative;
   height: relative;
   border: 3px solid White;
   padding: 50px;
   margin: 20px;
 }
-
-p.broscop{
-  font-size: 18px;
-  font-weight: bold;
-}
-p.bancop{
-  font-size: 18px;
-  font-weight: bold;
+div.bancop{
+  display: table-cell;
+  margin: 10px;
+  padding: 20px;
 }

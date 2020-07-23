@@ -1,9 +1,9 @@
 import glob, os, shutil, changer
 
 def move(fromd, to):
-    source_dir = 'C:/Users/erikr/Downloads'
-    dst = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/myapp/program/data/'
-    dst2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/myapp/program/BrosCo Original/'
+    source_dir = 'C:/Users/erikr/Downloads/'
+    dst = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/'
+    dst2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/'
 
     #consigue los archivos de la carpeta de descarga
     files = glob.iglob(os.path.join(source_dir, "*.xls"))
@@ -15,7 +15,7 @@ def move(fromd, to):
     num = str(num) + '.xls'
     name = source_dir + '/' + num
 
-    #mueve y renombra el archivo a data y brosco original respectivamente
+    #mueve y renombra el archivo a data y BrosCo_Original respectivamente
     for file in files:
         if 'movimientos' in file:
             os.rename(file, name)
@@ -31,8 +31,8 @@ def move(fromd, to):
 
 #renombrar archivos bancop para que tengan el mismo nombre que los archivos en data y lo mismo para archivos Brosco
 def move2(f):
-    src = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/myapp/program/data/'
-    dst = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/myapp/program/Bancop Original/'
+    src = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/'
+    dst = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/Bancop_Original/'
 
     files = glob.iglob(os.path.join(src, "?.xls"))
     n = f.split('.')
@@ -42,7 +42,7 @@ def move2(f):
         os.rename(file, name)
         if os.path.isfile(name):
             shutil.move(name, dst)
-    src2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/myapp/program/BrosCo Original/'
+    src2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/'
     brosco = glob.iglob(os.path.join(src2, "?.xls"))
     name2 = name.split('/')
     name2 = name2[1]

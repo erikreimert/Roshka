@@ -12,7 +12,7 @@ div.title{
   border-color: Azure;
   height: 10%;
   margin: 0;
-  padding: 0;
+  padding: 1px;
 }
 #wrapper{
   background-color: Moccasin;

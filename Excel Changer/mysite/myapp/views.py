@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from myapp.program.downloadbot import bot
 from threading import Thread
-from datetime import datetime
-import os, time
+import os, glob, mimetypes
 
 # Create your views here.
 
@@ -40,51 +39,85 @@ def consolidacion_get(request):
 def consolidacion2fa(request):
 
     if request.method == "POST":
-        consolidacion2fa_post(request)
+        return consolidacion2fa_post(request)
     elif request.method == "GET":
         return consolidacion2fa_get(request)
 
         ############DEBERIA PODER BORRAR ESTO PERO NO ME DEJA
-    return render(request, 'consolidacion/consolidacion2fa.html')
+    # return render(request, 'consolidacion/consolidacion2fa.html')
 
 def consolidacion2fa_post(request):
-
     twofa = request.POST.get('twofa')
 
     if twofa != None:
         auth_file = open('2fa.txt', 'w+')
         auth_file.write(twofa)
         auth_file.close()
-        time.sleep(10)
+        time.sleep(.01)
         os.remove('2fa.txt')
-        return render(request, 'consolidacion/test-session.html')
+        return redirect("/download")
 
 def consolidacion2fa_get(request):
     return render(request, 'consolidacion/consolidacion2fa.html')
 
 def download(request):
-    return render(request, 'consolidacion/download.html')
-##################################################################
-#TESTING
-def test_session(request):
-    if request.method == "POST":
-        return test_session_post(request)
-    elif request.method == "GET":
-        return test_session_get(request)
+    # if request.method == "POST":
+    #     return download_post(request)
+    # elif request.method == "GET":
+    #     return download_get(request)
+    items = dicter(request)
+    return render(request, 'consolidacion/download.html', {'items' : items})
 
-def test_session_get(request):
-    return render(request, 'consolidacion/test-session.html')
 
-def test_session_post(request):
-    person_name = request.POST['t']
-    person_created = datetime.now()
-    request.session['person_name'] = person_name
-    request.session['person_created'] = person_created.timestamp()
-    return redirect("/test-session-result")
+# def download_post(request):
+#     bancop = request.POST.get('bancop')
+#     Consolidado = request.POST.get('Consolidado')
+#     BrosCo = request.POST.get('BrosCo')
+#     bancopOG = request.POST.get('Bancop_Original')
+#
+#     list =[bancop, Consolidado, BrosCo, bancopOG]
+#     src = {
+#     1: 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/',
+#     2: 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Si_Bancop_No/',
+#     3: 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/',
+#     4: 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/Bancop_Original/'
+#     }
+#     i = 0
+#     for x in list:
+#         i+=1
+#         if x != None:
+#             fpath = src.get(i)
+#             fl = open(fpath, 'r')
+#             mime_type, _ = mimetypes.guess_type(fpath)
+#             response = HttpResponse(fl, content_type=mime_type)
+#             response['Content-Disposition'] = "attachment; x=%s" % x
+#             return response
+#
+# def download_get(request):
+#     items = dicter(request)
+#     return render(request, 'consolidacion/download.html', {'items' : items})
 
-def test_session_result(request):
-    return render(request, 'consolidacion/test-session-result.html', {
-        'person_name': request.session['person_name'],
-        'person_created': request.session['person_created'],
-    })
-#################################################################
+def lister(src):
+    dir =  glob.glob(src)
+    list = []
+    for x in dir:
+        item = x.split('\\')
+        item = item[1]
+        list.append(item)
+    return list
+def dicter(request):
+    bancop = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/*')
+    brosco = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/*')
+    consolidado = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Si_Bancop_No/*')
+    bancop_og = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/Bancop_Original/*')
+    request.session['bancopList'] = bancop
+    request.session['broscoList'] = brosco
+    request.session['consolidadoList'] = consolidado
+    request.session['bancop_ogList'] = bancop_og
+    items = {
+    'bancopList' : request.session['bancopList'],
+    'broscoList' : request.session['broscoList'],
+    'consolidadoList' : request.session['consolidadoList'],
+    'bancop_ogList' : request.session['bancop_ogList'],
+    }
+    return items

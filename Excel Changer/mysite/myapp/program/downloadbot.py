@@ -8,14 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # def bot(Intermediary):
 def bot(cedula, pword, ruc, option, fechain, fechafin):
 
-    # ################
-    #      BORRAR AL TERMINAR DE HACER TESTING, ESCENCIAL
-    cedula = '2124028'
-    pword = 'Verti2011'
-    ruc = '80101558-8'
-    option = 'sms'
 
-    ################
 
     #init el driver y chrome
     browser = webdriver.Chrome()
@@ -42,6 +35,7 @@ def bot(cedula, pword, ruc, option, fechain, fechafin):
         Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.XPATH,"//label[@for ='sms']")))
         Esperar.click()
 
+    exit(code=1)
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,"buttonCanalSend")))
     Esperar.click()
 
@@ -92,23 +86,3 @@ def bot2(fromd, to):
     #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
     time.sleep(120)
     browser.quit()
-
-if __name__ == "__main__":
-    try:
-        ruc = sys.argv[1]
-        cedula = sys.argv[2]
-        pword = sys.argv[3]
-        option = sys.argv[4]
-        fromd = sys.argv[5]
-        to = sys.argv[6]
-    except IndexError:
-        ruc = None
-        cedula = None
-        pword = None
-        option = None
-        fromd = None
-        to = None
-
-    bot(cedula, pword, ruc, option, fromd, to)
-    # bot2(fromd, to)
-    # mover.move(fromd, to)
