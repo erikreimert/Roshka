@@ -62,7 +62,8 @@ def consolidacion2fa_post(request):
 def consolidacion2fa_get(request):
     return render(request, 'consolidacion/consolidacion2fa.html')
 
-
+def download(request):
+    return render(request, 'consolidacion/download.html')
 ##################################################################
 #TESTING
 def test_session(request):

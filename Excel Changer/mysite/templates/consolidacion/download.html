@@ -1,0 +1,52 @@
+<html lang="en" dir="ltr">
+<head>
+  <title>BrosCo Consolidaciones</title>
+
+  <!-- first load django static tag. -->
+  {% load static %}
+
+  <!-- use django static tag ton load js file and css file. -->
+  <script src="{% static 'js/configs.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/download.css' %}">
+</head>
+<body>
+  <div class = 'title'>
+    <h1> Consolidaciones BrosCo </h1>
+  </div>
+  <div id= 'wrapper'>
+    <h2 id="#title-summary">Descargar datos deseados</h2>
+    <h3 id='sub-heading'>Si el archivo deseado no aparece, espere un momento a que sea procesado</h3>
+
+    <div class="form">
+      <!-- Boton para descargar archivos de BANCOP -->
+      <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='bancop' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+        <?php
+        $dir = "C:/Users/Erik Reimert/github/Roshka/Excel Changer/mysite/myapp/program/Bancop Original/";
+         if (is_dir($dir)){
+           if ($dh = opendir($dir)){
+           while (($file = readdir($dh)) !== false){
+              $bancopArray[] = echo $file;
+            }
+            closedir($dh);
+          }}?>
+        <p id="bancop">Archivos de Bancop</p>
+        <select name="bancop" id ='bancop' value ='bancop'>
+          <?php foreach( $bancopArray as $var => $bancop ): ?>
+          <option value="<?php echo $var ?>"<?php if( $var == $result['bancop'] ): ?> selected="selected"<?php endif; ?>><?php echo $bancop ?></option>
+          <?php endforeach; ?>
+        </select>
+      </form>
+
+      <!-- Boton para descargar archivo Consolidado -->
+      <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='consolidado' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+      </form>
+
+      <!-- Boton para descargar archivo BrosCo -->
+      <form action="/download/" autocomplete= off method="POST" class="psot-form" name ='broscop' onsubmit="return validate()"enctype="multipart/form-data">{% csrf_token %}
+      </form>
+
+    </div>
+  </div>
+
+</body>
+</html>

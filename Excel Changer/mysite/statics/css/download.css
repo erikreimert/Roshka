@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: Moccasin
+}
+
+div.title{
+  background-color: PowderBlue;
+  text-align: center;
+  font-family: Georgia;
+  border-color: Azure;
+  height: 10%;
+  margin: 0;
+  padding: 0;
+}
+#wrapper{
+  background-color: Moccasin;
+  font-family: Georgia;
+  text-align: center;
+  height: 100%;
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-style: italic;
+  margin: 15px;
+  padding: 0;
+}
+div.form{
+  display:inline-block;
+  background-color: Moccasin;
+  width: 300px;
+  height: relative;
+  border: 3px solid White;
+  padding: 50px;
+  margin: 20px;
+}
+
+p.broscop{
+  font-size: 18px;
+  font-weight: bold;
+}
+p.bancop{
+  font-size: 18px;
+  font-weight: bold;
+}
