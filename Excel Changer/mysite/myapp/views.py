@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from myapp.program.downloadbot import bot
 from threading import Thread
-import os, glob, mimetypes
+import os, glob
 
 # Create your views here.
 
@@ -44,9 +44,6 @@ def consolidacion2fa(request):
     elif request.method == "GET":
         return consolidacion2fa_get(request)
 
-        ############DEBERIA PODER BORRAR ESTO PERO NO ME DEJA
-    # return render(request, 'consolidacion/consolidacion2fa.html')
-
 def consolidacion2fa_post(request):
     twofa = request.POST.get('twofa')
 
@@ -58,48 +55,16 @@ def consolidacion2fa_post(request):
         os.remove('2fa.txt')
         return redirect("/download")
     else:
-        return consolidacion2fa_get(request)    
+        return consolidacion2fa_get(request)
 
 def consolidacion2fa_get(request):
     return render(request, 'consolidacion/consolidacion2fa.html')
 
 def download(request):
-    # if request.method == "POST":
-    #     return download_post(request)
-    # elif request.method == "GET":
-    #     return download_get(request)
     items = dicter(request)
     return render(request, 'consolidacion/download.html', {'items' : items})
-
-
-# def download_post(request):
-#     bancop = request.POST.get('bancop')
-#     Consolidado = request.POST.get('Consolidado')
-#     BrosCo = request.POST.get('BrosCo')
-#     bancopOG = request.POST.get('Bancop_Original')
-#
-#     list =[bancop, Consolidado, BrosCo, bancopOG]
-#     src = {
-#     1: 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/',
-#     2: 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Si_Bancop_No/',
-#     3: 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/',
-#     4: 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/Bancop_Original/'
-#     }
-#     i = 0
-#     for x in list:
-#         i+=1
-#         if x != None:
-#             fpath = src.get(i)
-#             fl = open(fpath, 'r')
-#             mime_type, _ = mimetypes.guess_type(fpath)
-#             response = HttpResponse(fl, content_type=mime_type)
-#             response['Content-Disposition'] = "attachment; x=%s" % x
-#             return response
-#
-# def download_get(request):
-#     items = dicter(request)
-#     return render(request, 'consolidacion/download.html', {'items' : items})
-
+#Helper function:
+#consigue una lista de archivos que estan en el servidor en la carpeta de la cual se le hace input
 def lister(src):
     dir =  glob.glob(src)
     list = []
@@ -108,6 +73,8 @@ def lister(src):
         item = item[1]
         list.append(item)
     return list
+#Helper function:
+#consigue un diccionario con llave: nombre de carpeta en el servido y valor: lista de nombre de archivos en esa carpeta
 def dicter(request):
     bancop = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/*')
     brosco = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/*')

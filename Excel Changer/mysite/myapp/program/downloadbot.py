@@ -5,7 +5,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 ##############################################################################
 #descargar archivo de Bancop
-# def bot(Intermediary):
 def bot(cedula, pword, ruc, option, fechain, fechafin):
 
 

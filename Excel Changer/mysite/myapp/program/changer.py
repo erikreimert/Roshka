@@ -1,4 +1,4 @@
-import xlrd, csv, os, glob, shutil, compare, mover
+import xlrd, csv, compare, mover
 
 from datetime import date,datetime
 

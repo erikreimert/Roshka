@@ -10,7 +10,7 @@ def compare(name, name2, name3):
     fin = sheet.nrows
     brosco = []
     bancop = []
-    # missing = []
+
     ### Bancop info and open
     with open(src, 'r') as file:
         bancopCsv = csv.reader(file)
@@ -38,10 +38,4 @@ def compare(name, name2, name3):
                 #si no esta en bancop copia la linea de Brosco en un nuevo archivo
                 filewriter.writerow(ahh)
 
-    # print(brosco)
-    # print(missing)
     print("Archivo Procesado")
-if __name__ == "__main__":
-    src = input()
-    src2 = input()
-    compare(src, src2)
