@@ -7,8 +7,6 @@ from selenium.webdriver.support import expected_conditions as EC
 #descargar archivo de Bancop
 def bot(cedula, pword, ruc, option, fechain, fechafin):
 
-
-
     #init el driver y chrome
     browser = webdriver.Chrome()
     browser.get(('https://www.bancop.com.py:8443/bancop/login'))

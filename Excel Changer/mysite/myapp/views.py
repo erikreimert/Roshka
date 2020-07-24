@@ -6,12 +6,12 @@ import os, glob
 # Create your views here.
 
 #Landing Page para Consolidcaciones
+###################################
 def consolidacion(request):
     if request.method == "POST":
             return consolidacion_post(request)
     elif request.method == "GET":
         return consolidacion_get(request)
-
 
 def consolidacion_post(request):
     ruc = request.POST.get('ruc')
@@ -34,8 +34,10 @@ def consolidacion_post(request):
 
 def consolidacion_get(request):
     return render(request, 'consolidacion/consolidacion.html')
+###################################
 
 #Page para la parte 2fa de Consolidaciones
+##########################################
 def consolidacion2fa(request):
 
     if request.method == "POST":
@@ -59,7 +61,10 @@ def consolidacion2fa_post(request):
 
 def consolidacion2fa_get(request):
     return render(request, 'consolidacion/consolidacion2fa.html')
+##########################################
 
+#Page para la descarga de archivos en el server
+##############################################
 def download(request):
     items = dicter(request)
     return render(request, 'consolidacion/download.html', {'items' : items})
@@ -91,3 +96,4 @@ def dicter(request):
     'bancop_ogList' : request.session['bancop_ogList'],
     }
     return items
+##############################################
