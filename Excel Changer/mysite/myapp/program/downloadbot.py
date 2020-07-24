@@ -32,7 +32,6 @@ def bot(cedula, pword, ruc, option, fechain, fechafin):
         Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.XPATH,"//label[@for ='sms']")))
         Esperar.click()
 
-    exit(code=1)
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,"buttonCanalSend")))
     Esperar.click()
 

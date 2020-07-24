@@ -54,3 +54,6 @@ def move2(f):
     fin2 = name2
 
     return fin1,fin2
+
+if __name__ == '__main__':
+    move('fromd', 'to')
