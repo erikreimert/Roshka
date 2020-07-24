@@ -59,10 +59,10 @@ def adapt(path, fechaini, fechafin):
     hora = hora.split(":")
     hora ='-'.join(hora)
     ###############################
-
+    src = path.split('4.xls')
+    src = src[0]
     #nombre del archivo
-    f = 'data/' + dia + '_'+ hora + '.csv'
-
+    f = src + dia + '_'+ hora + '.csv'
     #esribe el nuevo archivo arreglado de bancop
     with open(f, 'w', newline='') as csvfile:
         filewriter = csv.writer(csvfile, delimiter=',',
