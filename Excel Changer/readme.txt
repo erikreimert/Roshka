@@ -12,10 +12,18 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 
   En statics esta el CSS de las paginas por si quieren cambiarlos a algo mas atractivo/eficiente
 
+  Seria una buena idea poner una traba en mover.move() para que no ejecture hasta que note que hay dos archivos en la carpeta de descarga
 
 --Como correr
-Ir al url de descargas '/download/' si se quiere simplemente acceder a los archivos previamente consolidados
-Ir al url de consolidaciones '/consolidacion/' si se quiere conseguir nuevos archivos consolidados. Al llegar ahi llene los inputs requeridos y espere
+  Ir al url de descargas '/download/' si se quiere simplemente acceder a los archivos previamente consolidados
+  Ir al url de consolidaciones '/consolidacion/' si se quiere conseguir nuevos archivos consolidados. Al llegar ahi llene los inputs requeridos y espere
 
 --Como corre
-Al llenar el input de '/consolidacion/' un thread es inicializado que corre download.py. Ese script abre dos instancias de selenium, una que descarga los arhivos de la cuenta de BrosCo en bancop y otro que descarga los archivos del servidor en Brosco. Luego corre otro script que mueve esos archivos (mover.py) de la carpeta de descargas a donde deben permanecer en el servidor. Luego, el archivo de bancop es editado por un script (changer.py) ya que el archivo de Bancop tiene muy mala estructura y es inusable en su estado post-descarga. Luego se consolida el archivo de bancop (con el script compare.py) con el de brosco y se crea un nuevo archivo con las diferencias (Brosco - Bancop). Todos estos archivos luego son visibles en los drop down menus en '/download/' y se pueden descargar del servidor.
+  Al llenar el input de '/consolidacion/' un thread es inicializado que corre download.py. Ese script abre dos instancias de selenium, una que descarga los arhivos de la cuenta de BrosCo en bancop y otro que descarga los archivos del servidor en Brosco. Luego corre otro script que mueve esos archivos (mover.py) de la carpeta de descargas a donde deben permanecer en el servidor. Luego, el archivo de bancop es editado por un script (changer.py) ya que el archivo de Bancop tiene muy mala estructura y es inusable en su estado post-descarga. Luego se consolida el archivo de bancop (con el script compare.py) con el de brosco y se crea un nuevo archivo con las diferencias (Brosco - Bancop). Todos estos archivos luego son visibles en los drop down menus en '/download/' y se pueden descargar del servidor.
+
+--Posibles futuros problemas
+-Bancop actualiza su pagina:
+  Va tener que reconfigurarse el downloadbot
+
+-Bancop actualiza su archivo
+  Si el archivo de bancop deja de ser tan caca posiblemente se va a poder utilizar sin changer.py y pasarlo directo a compare.py

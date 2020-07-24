@@ -41,7 +41,7 @@ def consolidacion_get(request):
 def consolidacion2fa(request):
 
     if request.method == "POST":
-        print("\n\n\n\n\n\n\n\n\n PUTA LO PARIO \n\n\n\n\n\n\n\n\n\n")
+        # print("\n\n\n\n\n\n\n\n\n PUTA LO PARIO \n\n\n\n\n\n\n\n\n\n")
         return consolidacion2fa_post(request)
     elif request.method == "GET":
         return consolidacion2fa_get(request)
