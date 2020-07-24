@@ -39,6 +39,7 @@ def consolidacion_get(request):
 def consolidacion2fa(request):
 
     if request.method == "POST":
+        print("\n\n\n\n\n\n\n\n\n PUTA LO PARIO \n\n\n\n\n\n\n\n\n\n")
         return consolidacion2fa_post(request)
     elif request.method == "GET":
         return consolidacion2fa_get(request)
@@ -56,6 +57,8 @@ def consolidacion2fa_post(request):
         time.sleep(.01)
         os.remove('2fa.txt')
         return redirect("/download")
+    else:
+        return consolidacion2fa_get(request)    
 
 def consolidacion2fa_get(request):
     return render(request, 'consolidacion/consolidacion2fa.html')
