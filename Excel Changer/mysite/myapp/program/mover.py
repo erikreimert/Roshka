@@ -1,9 +1,11 @@
-import glob, os, shutil, changer
+import glob, os, shutil, changer, folders
 
 def move(fromd, to):
     source_dir = 'C:/Users/erikr/Downloads/'
-    dst = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/'
-    dst2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/'
+    # dst = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/'
+    dst = folders.data
+    # dst2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/'
+    dst2 = folders.BrosCo_Original
 
     #consigue los archivos de la carpeta de descarga
     files = glob.iglob(os.path.join(source_dir, "*.xls"))
@@ -31,20 +33,20 @@ def move(fromd, to):
 
 #renombrar archivos bancop para que tengan el mismo nombre que los archivos en data y lo mismo para archivos Brosco
 def move2(f):
-    src = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/'
-    dst = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/Bancop_Original/'
+    # src = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/'
+    src = folders.data
+    # dst = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/Bancop_Original/'
+    dst = folders.Bancop_Original
 
     files = glob.iglob(os.path.join(src, "?.xls"))
     # n = f.split('.')
     name = f.replace('.csv', '.xls')
-    # print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
-    # print(name)
-    # print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
     for file in files:
         os.rename(file, name)
         if os.path.isfile(name):
             shutil.move(name, dst)
-    src2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/'
+    # src2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/'
+    src2 = folders.BrosCo_Original
     brosco = glob.iglob(os.path.join(src2, "?.xls"))
     name2 = name.split('data/')
     name2 = name2[1]
