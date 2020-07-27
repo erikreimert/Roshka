@@ -1,4 +1,4 @@
-import time, os
+import time, os, glob, folders
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -79,6 +79,18 @@ def bot2(fromd, to):
     browser = webdriver.Chrome()
     browser.get((link))
 
-    #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
-    time.sleep(120)
+    #OPCION 1
+        #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
+    # time.sleep(120)
+    #OPCION 2
+        #Esperar a que los dos archivos existan en la carpeta de descarga
+    xls_Path = folders.dl + '*.xls'
+    xlsx_Path = folders.dl + '*.xlsx'
+    xls = glob.glob(xls_Path)
+    xlsx = glob.glob(xlsx_Path)
+    file_list = xls.append(xlsx)
+    while(len(file_list) < 2):
+        xls = glob.glob(xls_Path)
+        xlsx = glob.glob(xlsx_Path)
+        file_list = xls.append(xlsx)
     browser.quit()

@@ -1,7 +1,7 @@
 import glob, os, shutil, changer, folders
 
 def move(fromd, to):
-    source_dir = 'C:/Users/erikr/Downloads/'
+    source_dir = folders.dl
     dst = folders.data
     dst2 = folders.BrosCo_Original
 

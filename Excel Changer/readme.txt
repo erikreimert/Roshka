@@ -27,3 +27,6 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 
 -Bancop actualiza su archivo
   Si el archivo de bancop deja de ser tan caca posiblemente se va a poder utilizar sin changer.py y pasarlo directo a compare.py
+
+-Archivos se quedan en la carpeta de descargas
+  El programa escanea la carpeta de descargas luego de descargar los dos archivos (Bancop y Brosco), en la forma que esta integrada no deberia NUNCA haber archivos en la carpeta de descarga (que sean .xls o .xlsx). Si falla la aplicacion a la mitad, o va la luz, o alguna especie de error ocurre y archivos quedan en la carpeta de descargas (que sean de tipo .xls o .xlsx) esto confundiria a la aplicacion y posiblemente haga que las consolidaciones no ocurran correctamente. Esto es de alto riesgo
