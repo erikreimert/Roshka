@@ -1,11 +1,8 @@
 import csv, xlrd, folders
 
 def compare(name, name2, name3):
-    # src = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/' + name
     src = folders.data + name
-    # src2 = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/' + name2
     src2 = folders.BrosCo_Original + name2
-    # want = 'C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Si_Bancop_No/' + 'Consolidacion ' + name3
     want = folders.BrosCo_Si_Bancop_No + 'Consolidacion ' + name3
     ### BrosCo info and open
     book = xlrd.open_workbook(src2)
