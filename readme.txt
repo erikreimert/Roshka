@@ -5,8 +5,7 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 -xlrd, csv, glob, shutil, threading, time, os, Selenium
 
 --Upgrades
-  Si se quiere agregar una opcion para distintas o mas coperativas se tendra que editar el html de consolidacion.html para que tenga ese input,
-    views.py para que mande ese input a downloadbot.py y la funcion bot() para que tome ese input y se lo pase a la funcion bot2() (tambien se tendra que editar el link en bot2() para que se agregue la coperativa deseada al link)
+  Para agregar mas coperativas simplemente entre al archivo consolidacion.html y agregue una nueva opcion al SELECT que esta en la seccion de opciones de brosco. Ponga de valor las indices de la coperativa como esta en el servidor de produccion, por ej. Comecipar seria MECI y luego ponga el nombre de la corporativa como la opcion.
 
   Si se quiere crear nuevas carpetas para tener a las diferentes coperativas en lugares diferentes recomiendo tomar el input que haran arriba para el link y pasarlo a todas las funciones para nombrar los archivos con su coperativa. De ahi no seria extremadamente complicado separa esos archivos por nombre.
 

@@ -1,9 +1,10 @@
-import csv, xlrd, folders
+import csv, xlrd
+from . import folders
 
-def compare(name, name2, name3):
+def compare(name, name2, name3, corporativa):
     src = folders.data + name
     src2 = folders.BrosCo_Original + name2
-    want = folders.BrosCo_Si_Bancop_No + 'Consolidacion ' + name3
+    want = folders.BrosCo_Si_Bancop_No + corporativa + ' ' + name3
     ### BrosCo info and open
     book = xlrd.open_workbook(src2)
     sheet = book.sheet_by_index(0)

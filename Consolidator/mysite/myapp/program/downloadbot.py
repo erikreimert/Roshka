@@ -1,4 +1,5 @@
-import time, os, glob, folders
+import time, os, glob
+from . import folders
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -6,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from pyvirtualdisplay import Display
 ##############################################################################
 #descargar archivo de Bancop
-def bot(cedula, pword, ruc, option, fechain, fechafin):
+def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
 
     #Run headless
     display = Display(visible=0, size=(1024, 768))
@@ -70,15 +71,14 @@ def bot(cedula, pword, ruc, option, fechain, fechafin):
     descargar = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH,"//i[@class='icon-download']")))
     descargar.click()
 
-    bot2(fechain, fechafin)
-    mover.move(fechain, fechafin)
+    bot2(fechain, fechafin, corporativa)
+    mover.move(fechain, fechafin, corporativa)
 ###########################################################################
 
 
 #descargar archivo de brosco
 def bot2(fromd, to):
-    link = 'https://iapi.brosco.com.py/brosco-api/aurora/conciliation/list/export?from=' + fromd + '&to=' + to + '&affiliateId=EDUC'
-    # link1 = 'https://phoebe.roshka.com.py/brosco-api/aurora-api/conciliation/list/export?from=2020-06-25&to=2020-06-30&affiliateId=EDUC'
+    link = 'https://iapi.brosco.com.py/brosco-api/aurora-api/conciliation/list/export?from=' + fromd + '&to=' + to + '&affiliateId=' + corporativa
     #Run headless
     display = Display(visible=0, size=(1024, 768))
     display.start()

@@ -1,6 +1,7 @@
-import glob, os, shutil, changer, folders
+import glob, os, shutil, changer,
+from . import folders
 
-def move(fromd, to):
+def move(fromd, to, corporativa):
     source_dir = folders.dl
     dst = folders.data
     dst2 = folders.BrosCo_Original
@@ -27,7 +28,7 @@ def move(fromd, to):
             if os.path.isfile(name):
                 shutil.move(name, dst2)
     path = dst + num
-    changer.adapt(path, fromd, to)
+    changer.adapt(path, fromd, to, corporativa)
 
 #renombrar archivos bancop para que tengan el mismo nombre que los archivos en data y lo mismo para archivos Brosco
 def move2(f):

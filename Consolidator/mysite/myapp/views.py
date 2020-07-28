@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from myapp.program.downloadbot import bot
 from threading import Thread
+from myapp.program.folders import Bancop_Original, BrosCo_Original, BrosCo_Si_Bancop_No, data
 import os, glob
 
 # Create your views here.
@@ -21,15 +22,13 @@ def consolidacion_post(request):
     option = request.POST.get('2fa')
     fechain = request.POST.get('ini')
     fechafin = request.POST.get('fin')
+    corporativa = request.POST.get('corpo')
 
     #para que abra el downloadbot
     if ruc != None:
         twofa = request.POST.get('twofa')
-
-        t = Thread(group=None, target=bot, name=None, args=(cedula,pword,ruc,option, fechain, fechafin,), kwargs={}, daemon=None)
-
+        t = Thread(group=None, target=bot, name=None, args=(cedula,pword,ruc,option, fechain, fechafin, corporativa,), kwargs={}, daemon=None)
         t.start()
-
         return consolidacion2fa(request)
 
 def consolidacion_get(request):
@@ -81,10 +80,14 @@ def lister(src):
 #Helper function:
 #consigue un diccionario con llave: nombre de carpeta en el servido y valor: lista de nombre de archivos en esa carpeta
 def dicter(request):
-    bancop = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/data/*')
-    brosco = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Original/*')
-    consolidado = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/BrosCo_Si_Bancop_No/*')
-    bancop_og = lister('C:/Users/erikr/github/Roshka/Excel Changer/mysite/statics/Bancop_Original/*')
+    bcop = data + '*'
+    bancop = lister(bcop)
+    bco = BrosCo_Original +'*'
+    brosco = lister(bco)
+    conso = BrosCo_Si_Bancop_No + '*'
+    consolidado = lister(conso)
+    bcopog = Bancop_Original + '*'
+    bancop_og = lister(bcopog)
     request.session['bancopList'] = bancop
     request.session['broscoList'] = brosco
     request.session['consolidadoList'] = consolidado
