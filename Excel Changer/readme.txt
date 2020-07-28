@@ -12,7 +12,7 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 
   En statics esta el CSS de las paginas por si quieren cambiarlos a algo mas atractivo/eficiente
 
-  Seria una buena idea poner una traba en mover.move() para que no ejecture hasta que note que hay dos archivos en la carpeta de descarga
+  En downloadbot.py hay una segunda opcion en bot2 para la espera de descarga. No estoy 100% seguro que funcione pero si alguien quiere explorarla seria probablemente la mejor opcion en cuanto a esperar a la descarga de los archivos
 
 --Como correr
   Ir al url de descargas '/download/' si se quiere simplemente acceder a los archivos previamente consolidados

@@ -3,12 +3,15 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pyvirtualdisplay import Display
 ##############################################################################
 #descargar archivo de Bancop
 def bot(cedula, pword, ruc, option, fechain, fechafin):
 
-    #init el driver y chrome
-    browser = webdriver.Chrome()
+    #Run headless
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
+    browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
     browser.get(('https://www.bancop.com.py:8443/bancop/login'))
     #cambia a pagina de Enterprise
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'title-second-login')))
@@ -76,21 +79,24 @@ def bot(cedula, pword, ruc, option, fechain, fechafin):
 def bot2(fromd, to):
     link = 'https://iapi.brosco.com.py/brosco-api/aurora/conciliation/list/export?from=' + fromd + '&to=' + to + '&affiliateId=EDUC'
     # link1 = 'https://phoebe.roshka.com.py/brosco-api/aurora-api/conciliation/list/export?from=2020-06-25&to=2020-06-30&affiliateId=EDUC'
-    browser = webdriver.Chrome()
+    #Run headless
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
+    browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
     browser.get((link))
 
     #OPCION 1
         #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
-    # time.sleep(120)
+    time.sleep(120)
     #OPCION 2
         #Esperar a que los dos archivos existan en la carpeta de descarga
-    xls_Path = folders.dl + '*.xls'
-    xlsx_Path = folders.dl + '*.xlsx'
-    xls = glob.glob(xls_Path)
-    xlsx = glob.glob(xlsx_Path)
-    file_list = xls.append(xlsx)
-    while(len(file_list) < 2):
-        xls = glob.glob(xls_Path)
-        xlsx = glob.glob(xlsx_Path)
-        file_list = xls.append(xlsx)
+    # xls_Path = folders.dl + '*.xls'
+    # xlsx_Path = folders.dl + '*.xlsx'
+    # xls = glob.glob(xls_Path)
+    # xlsx = glob.glob(xlsx_Path)
+    # file_list = xls.append(xlsx)
+    # while(len(file_list) < 2):
+    #     xls = glob.glob(xls_Path)
+    #     xlsx = glob.glob(xlsx_Path)
+    #     file_list = xls.append(xlsx)
     browser.quit()
