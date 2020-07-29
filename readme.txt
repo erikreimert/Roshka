@@ -5,9 +5,13 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 -xlrd, csv, glob, shutil, threading, time, os, Selenium
 
 --Upgrades
-  Para agregar mas coperativas simplemente entre al archivo consolidacion.html y agregue una nueva opcion al SELECT que esta en la seccion de opciones de brosco. Ponga de valor las indices de la coperativa como esta en el servidor de produccion, por ej. Comecipar seria MECI y luego ponga el nombre de la corporativa como la opcion.
+  Para agregar mas coperativas simplemente entre al archivo consolidacion.html y agregue una nueva opcion al SELECT que esta en la seccion de opciones de brosco. Ponga de valor las indices de la coperativa como esta en el servidor de produccion, por ej. el valor de Comecipar seria MECI y luego ponga el nombre de la corporativa como la opcion.
 
-  Si se quiere crear nuevas carpetas para tener a las diferentes coperativas en lugares diferentes recomiendo tomar el input que haran arriba para el link y pasarlo a todas las funciones para nombrar los archivos con su coperativa. De ahi no seria extremadamente complicado separa esos archivos por nombre.
+  Si se quiere crear nuevas carpetas para tener a las diferentes coperativas en lugares diferentes recomiendo tomar el input que haran arriba para el link y pasarlo a todas las funciones para nombrar los archivos con su coperativa.  De ahi no seria extremadamente complicado separar esos archivos por nombre.
+
+  Si quieren editar el path de los directorios en el codigo lo podran hacer en una sola linea si lo editan en myapp/program/folders.py, ese archivo sirve como un database de los path que es impoortado por todos los otros archivos.
+
+  Tambien recomendaria redisenhar la pagina downloads.html, ahora mismo no es muy ergonomica
 
   En statics esta el CSS de las paginas por si quieren cambiarlos a algo mas atractivo/eficiente
 
