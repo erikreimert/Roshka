@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from myapp.program.downloadbot import bot
 from threading import Thread
 from myapp.program.folders import Bancop_Original, BrosCo_Original, BrosCo_Si_Bancop_No, data
-import os, glob
+import os, glob, time
 
 # Create your views here.
 
@@ -40,7 +40,6 @@ def consolidacion_get(request):
 def consolidacion2fa(request):
 
     if request.method == "POST":
-        # print("\n\n\n\n\n\n\n\n\n PUTA LO PARIO \n\n\n\n\n\n\n\n\n\n")
         return consolidacion2fa_post(request)
     elif request.method == "GET":
         return consolidacion2fa_get(request)
@@ -52,7 +51,7 @@ def consolidacion2fa_post(request):
         auth_file = open('2fa.txt', 'w+')
         auth_file.write(twofa)
         auth_file.close()
-        time.sleep(.01)
+        time.sleep(1.5)
         os.remove('2fa.txt')
         return redirect("/download")
     else:

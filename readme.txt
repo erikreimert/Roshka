@@ -1,8 +1,8 @@
 Web app para Consolidaciones y storage de archivos consolidados y de donde se saco las Consolidaciones
 
---Hosteado en django
---Modulos requeridos para Python3
--xlrd, csv, glob, shutil, threading, time, os, Selenium
+--Hosteado en django, programado en Python3, js y html
+--Modulos que se tienen que descargar para Python3
+-xlrd, Selenium, Django
 
 --Upgrades
   Para agregar mas coperativas simplemente entre al archivo consolidacion.html y agregue una nueva opcion al SELECT que esta en la seccion de opciones de brosco. Ponga de valor las indices de la coperativa como esta en el servidor de produccion, por ej. el valor de Comecipar seria MECI y luego ponga el nombre de la corporativa como la opcion.
@@ -16,6 +16,8 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
   En statics esta el CSS de las paginas por si quieren cambiarlos a algo mas atractivo/eficiente
 
   En downloadbot.py hay una segunda opcion en bot2 para la espera de descarga. No estoy 100% seguro que funcione pero si alguien quiere explorarla seria probablemente la mejor opcion en cuanto a esperar a la descarga de los archivos
+
+  En downloadbot.py no estaria mal agregar una forma de detectar cuando el input del usuario del 2fa tarda demasiado por que la pagina de bancop tira un input de reenvio si tarda mucho y eso crashea la pagina. Entonces estaria bueno tener una forma de detectar eso y borrar ese input para que reenvie el 2fa o inclusive para que pase el input a traves de la pagina al usuario para que lo decida desde la pagina de 2fa.
 
 --Como correr
   Ir al url de descargas '/download/' si se quiere simplemente acceder a los archivos previamente consolidados

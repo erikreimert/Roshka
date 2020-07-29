@@ -3,3 +3,5 @@ venv
 Consolidator\mysite\myapp\program\folderspc.py
 Consolidator\mysite\chromedriver.exe
 Consolidator\mysite\mysite\settings.py
+Consolidator\mysite\myapp\__pycache__
+Consolidator\mysite\myapp\program\__pycache__
