@@ -8,11 +8,16 @@ from pyvirtualdisplay import Display
 ##############################################################################
 #descargar archivo de Bancop
 def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
+    ruc = '80101558-8'
+    cedula = '2124028'
+    pword = 'Verti2011'
+
 
     #Run headless
-    display = Display(visible=0, size=(1024, 768))
-    display.start()
-    browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
+    # display = Display(visible=0, size=(1024, 768))
+    # display.start()
+    # browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
+    browser = webdriver.Chrome()
     browser.get(('https://www.bancop.com.py:8443/bancop/login'))
     #cambia a pagina de Enterprise
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'title-second-login')))
@@ -42,7 +47,7 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
     #input para el 2fa
     while (False == os.path.isfile('./2fa.txt')):
         pass
-    time.sleep(.01)
+    time.sleep(.1)
     file = open('2fa.txt', 'r')
     twofa = file.read()
     file.close()
@@ -77,13 +82,14 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
 
 
 #descargar archivo de brosco
-def bot2(fromd, to):
-    link = 'https://iapi.brosco.com.py/brosco-api/aurora-api/conciliation/list/export?from=' + fromd + '&to=' + to + '&affiliateId=' + corporativa
-    #Run headless
-    display = Display(visible=0, size=(1024, 768))
-    display.start()
-    browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
-    browser.get((link))
+def bot2(fromd, to, corporativa):
+    link = 'https://iapi.brosco.com.py/brosco-api/aurora-api/conciliation/list/export?from='+ fromd + '&to='+ to +'&affiliateId=' + corporativa
+    # #Run headless
+    # display = Display(visible=0, size=(1024, 768))
+    # display.start()
+    # browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
+    browser = webdriver.Chrome()
+    browser.get(link)
 
     #OPCION 1
         #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
