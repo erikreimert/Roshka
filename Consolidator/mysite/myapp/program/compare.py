@@ -1,5 +1,6 @@
 import csv, xlrd
-from . import folders
+# from . import folders
+import folders
 
 def compare(name, name2, name3, corporativa):
     src = folders.data + name

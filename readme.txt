@@ -2,7 +2,7 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 
 --Hosteado en django, programado en Python3, js y html
 --Modulos que se tienen que descargar para Python3
--xlrd, Selenium, Django
+-xlrd, Selenium, Django, pyvirtualdisplay
 
 --Upgrades
   Para agregar mas coperativas simplemente entre al archivo consolidacion.html y agregue una nueva opcion al SELECT que esta en la seccion de opciones de brosco. Ponga de valor las indices de la coperativa como esta en el servidor de produccion, por ej. el valor de Comecipar seria MECI y luego ponga el nombre de la corporativa como la opcion.
@@ -35,3 +35,6 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 
 -Archivos se quedan en la carpeta de descargas
   El programa escanea la carpeta de descargas luego de descargar los dos archivos (Bancop y Brosco), en la forma que esta integrada no deberia NUNCA haber archivos en la carpeta de descarga (que sean .xls o .xlsx). Si falla la aplicacion a la mitad, o va la luz, o alguna especie de error ocurre y archivos quedan en la carpeta de descargas (que sean de tipo .xls o .xlsx) esto confundiria a la aplicacion y posiblemente haga que las consolidaciones no ocurran correctamente. Esto es de alto riesgo
+
+-Archivos descargados del servidor Brosco dejan de tener la palabra Brosco en el nombre del archivo
+  La forma que detecta el programa si el xlsx es de brosco es leyendo los nombres de los archivos, esto esta en mover.py, si se cambian los nombres de los archivos porfavor actualizar eso en mover.py

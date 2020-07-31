@@ -1,6 +1,7 @@
 import time, os, glob
-from . import folders
+from . import folders, mover
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains, ActionBuilder
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,16 +9,15 @@ from pyvirtualdisplay import Display
 ##############################################################################
 #descargar archivo de Bancop
 def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
-    ruc = '80101558-8'
-    cedula = '2124028'
-    pword = 'Verti2011'
-
 
     #Run headless
     # display = Display(visible=0, size=(1024, 768))
     # display.start()
     # browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
     browser = webdriver.Chrome()
+
+    actions = ActionChains(browser)
+
     browser.get(('https://www.bancop.com.py:8443/bancop/login'))
     #cambia a pagina de Enterprise
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'title-second-login')))
@@ -45,7 +45,7 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
     Esperar.click()
 
     #input para el 2fa
-    while (False == os.path.isfile('./2fa.txt')):
+    while (os.path.isfile('./2fa.txt')):
         pass
     time.sleep(.1)
     file = open('2fa.txt', 'r')
@@ -65,13 +65,9 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
     Esperar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.LINK_TEXT,'Movimientos')))
     Esperar.click()
 
-    #TODO Este es el que falla
     time.sleep(1)
-    descargar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.XPATH,"//form[@id='form-movement-account']/div[@class = 'radio col-md-12 col-sm-12 col-xs-12'/label[@for='041014092']")))
-    descargar.click()
-
-    descargar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,'dataMovementAccountSelected')))
-    descargar.click()
+    descargar = WebDriverWait(browser, 2).until(EC.element_to_be_clickable((By.ID,"modalMovementAccount")))
+    actions.send_keys("\t\t\t\t\t\t\t\t\t\t \t ").perform()
 
     descargar = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH,"//i[@class='icon-download']")))
     descargar.click()
@@ -93,16 +89,16 @@ def bot2(fromd, to, corporativa):
 
     #OPCION 1
         #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
-    time.sleep(120)
+    time.sleep(500)
     #OPCION 2
         #Esperar a que los dos archivos existan en la carpeta de descarga
-    # xls_Path = folders.dl + '*.xls'
-    # xlsx_Path = folders.dl + '*.xlsx'
-    # xls = glob.glob(xls_Path)
-    # xlsx = glob.glob(xlsx_Path)
-    # file_list = xls.append(xlsx)
-    # while(len(file_list) < 2):
-    #     xls = glob.glob(xls_Path)
-    #     xlsx = glob.glob(xlsx_Path)
-    #     file_list = xls.append(xlsx)
+    xls_Path = folders.dl + '*.xls'
+    xlsx_Path = folders.dl + '*.xlsx'
+    xls = glob.glob(xls_Path)
+    xlsx = glob.glob(xlsx_Path)
+    file_list = xls.append(xlsx)
+    while(len(file_list) < 2):
+        xls = glob.glob(xls_Path)
+        xlsx = glob.glob(xlsx_Path)
+        file_list = xls.append(xlsx)
     browser.quit()

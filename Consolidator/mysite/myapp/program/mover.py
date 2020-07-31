@@ -1,7 +1,26 @@
-import glob, os, shutil, changer,
-from . import folders
+import glob, os, shutil
+# from . import folders, changer
+import folders, changer
 
 def move(fromd, to, corporativa):
+
+    xls_Path = folders.dl + '*.xls'
+    xlsx_Path = folders.dl + '*.xlsx'
+    # xls = glob.glob(xls_Path)
+    # xlsx = glob.glob(xlsx_Path)
+    # file_list = xls.append(xlsx)
+    while(os.path.isfile(xls_Path)):
+        # xls = glob.glob(xls_Path)
+        # xlsx = glob.glob(xlsx_Path)
+        # file_list = xls.append(xlsx)
+        print('stuck in none')
+        pass
+    while(os.path.isfile(xlsx_Path)):
+        # xls = glob.glob(xls_Path)
+        # xlsx = glob.glob(xlsx_Path)
+        # file_list = xls.append(xlsx)
+        pass
+        
     source_dir = folders.dl
     dst = folders.data
     dst2 = folders.BrosCo_Original
@@ -54,3 +73,5 @@ def move2(f):
     fin2 = name2
 
     return fin1,fin2
+if __name__ == '__main__':
+    move('2020-07-01','2020-07-30', 'MECI')
