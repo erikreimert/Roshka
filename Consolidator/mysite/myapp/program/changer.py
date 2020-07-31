@@ -1,7 +1,5 @@
 import xlrd, csv
-# from . import compare, mover
-import compare, mover
-
+from . import compare, mover
 from datetime import date,datetime
 
 #le saca los '' demas a los row en el xls

@@ -15,8 +15,6 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 
   En statics esta el CSS de las paginas por si quieren cambiarlos a algo mas atractivo/eficiente
 
-  En downloadbot.py hay una segunda opcion en bot2 para la espera de descarga. No estoy 100% seguro que funcione pero si alguien quiere explorarla seria probablemente la mejor opcion en cuanto a esperar a la descarga de los archivos
-
   En downloadbot.py no estaria mal agregar una forma de detectar cuando el input del usuario del 2fa tarda demasiado por que la pagina de bancop tira un input de reenvio si tarda mucho y eso crashea la pagina. Entonces estaria bueno tener una forma de detectar eso y borrar ese input para que reenvie el 2fa o inclusive para que pase el input a traves de la pagina al usuario para que lo decida desde la pagina de 2fa.
 
 --Como correr

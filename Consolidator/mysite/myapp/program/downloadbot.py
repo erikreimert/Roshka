@@ -11,10 +11,10 @@ from pyvirtualdisplay import Display
 def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
 
     #Run headless
-    # display = Display(visible=0, size=(1024, 768))
-    # display.start()
-    # browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
-    browser = webdriver.Chrome()
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
+    browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
+    # browser = webdriver.Chrome()
 
     actions = ActionChains(browser)
 
@@ -45,7 +45,7 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
     Esperar.click()
 
     #input para el 2fa
-    while (os.path.isfile('./2fa.txt')):
+    while (False == os.path.isfile('./2fa.txt')):
         pass
     time.sleep(.1)
     file = open('2fa.txt', 'r')
@@ -76,29 +76,29 @@ def bot(cedula, pword, ruc, option, fechain, fechafin, corporativa):
     mover.move(fechain, fechafin, corporativa)
 ###########################################################################
 
-
+def count(xls):
+    i = 0
+    for file in xls:
+        i+=1
+    return i
 #descargar archivo de brosco
 def bot2(fromd, to, corporativa):
     link = 'https://iapi.brosco.com.py/brosco-api/aurora-api/conciliation/list/export?from='+ fromd + '&to='+ to +'&affiliateId=' + corporativa
-    # #Run headless
-    # display = Display(visible=0, size=(1024, 768))
-    # display.start()
-    # browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
-    browser = webdriver.Chrome()
+    #Run headless
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
+    browser = webdriver.Chrome(service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
+    # browser = webdriver.Chrome()
     browser.get(link)
-
-    #OPCION 1
-        #TIEMPO DE ESPERA PARA QUE SE DESCARGUE EL ARCHIVO DE BANCOP Y BROSCO, INCREMENTAR SI FALTA TIEMPO
-    time.sleep(500)
-    #OPCION 2
-        #Esperar a que los dos archivos existan en la carpeta de descarga
-    xls_Path = folders.dl + '*.xls'
-    xlsx_Path = folders.dl + '*.xlsx'
-    xls = glob.glob(xls_Path)
-    xlsx = glob.glob(xlsx_Path)
-    file_list = xls.append(xlsx)
-    while(len(file_list) < 2):
-        xls = glob.glob(xls_Path)
-        xlsx = glob.glob(xlsx_Path)
-        file_list = xls.append(xlsx)
+    #Esperar a que los dos archivos existan en la carpeta de descarga
+    xlsP =  glob.iglob(os.path.join(folders.dl, "*.xls"))
+    xlsxP =  glob.iglob(os.path.join(folders.dl, "*.xlsx"))
+    xls = count(xlsP)
+    xlsx = count(xlsxP)
+    while(xls < 1 ) and (xlsx < 1):
+        xlsP =  glob.iglob(os.path.join(folders.dl, "*.xls"))
+        xlsxP =  glob.iglob(os.path.join(folders.dl, "*.xlsx"))
+        xls = count(xlsP)
+        xlsx = count(xlsxP)
+        pass
     browser.quit()
