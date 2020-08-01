@@ -2,7 +2,7 @@ Web app para Consolidaciones y storage de archivos consolidados y de donde se sa
 
 --Hosteado en django, programado en Python3, js y html
 --Modulos que se tienen que descargar para Python3
--xlrd, Selenium, Django, pyvirtualdisplay
+-xlrd, Selenium, Django, pyvirtualdisplay, apache2
 
 --Upgrades
   Para agregar mas coperativas simplemente entre al archivo consolidacion.html y agregue una nueva opcion al SELECT que esta en la seccion de opciones de brosco. Ponga de valor las indices de la coperativa como esta en el servidor de produccion, por ej. el valor de Comecipar seria MECI y luego ponga el nombre de la corporativa como la opcion.
